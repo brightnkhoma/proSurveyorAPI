@@ -16,11 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import getAnswer, get_base64_image, krigging
+from .views import  krigging
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('get-answer/', getAnswer),
-     path('get-base64-image/', get_base64_image, name='get-base64-image'),
+    path('admin/', admin.site.urls),   
      path("krigging/",krigging)
 ]
