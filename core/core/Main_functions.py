@@ -3,7 +3,6 @@ import geopandas as gpd
 from geokrige.methods import SimpleKriging
 from geokrige.tools import TransformerGDF
 from matplotlib import pyplot as plt 
-import math
 import io
 import base64
 import matplotlib
