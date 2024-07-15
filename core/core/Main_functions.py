@@ -52,7 +52,7 @@ class Interpolate:
         z.append(self.convert())
        
         
-        initial_geoDataFrame = self.get_shapeFile(self.downdload_shapefile(shapefile_path,f"shapefiles/{email}")[0])
+        initial_geoDataFrame = self.get_shapeFile(self.downdload_shapefile(shapefile_path,email)[0])
         final_geoDataFrame = initial_geoDataFrame.to_crs(epsg=crs)
 
         transformer = TransformerGDF()
