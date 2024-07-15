@@ -127,4 +127,4 @@ class Interpolate:
                     os.path.join(tmpdir, name) for name in os.listdir(tmpdir) if name.endswith('.shp')
                 )
                 gdf = gpd.read_file(shapefile_path)
-                return gdf.set_crs(epsg=32736)
+                return gdf.set_crs(epsg=32736,allow_override=True)
