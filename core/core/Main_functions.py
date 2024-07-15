@@ -11,6 +11,7 @@ import os
 from dotenv import load_dotenv
 import requests
 import zipfile
+import tempfile
 
 matplotlib.use("agg")
 load_dotenv()
@@ -51,7 +52,7 @@ class Interpolate:
         z = []
         z.append(self.convert())
 
-        initial_geoDataFrame = self.get_shapeFile(self.downdload_shapefile(shapefile_path, email)[0])
+        initial_geoDataFrame = self.download_shapefile_to_generate_geo_dataframe(shapefile_path)
         final_geoDataFrame = initial_geoDataFrame.to_crs(epsg=crs)
 
         transformer = TransformerGDF()
@@ -113,3 +114,17 @@ class Interpolate:
                 if file.endswith('.shp'):
                     shp_files.append(os.path.join(root, file))
         return shp_files
+    
+
+    def download_shapefile_to_generate_geo_dataframe(self,path : str):
+        response = requests.get(path)
+        response.raise_for_status()
+        zip_file = io.BytesIO(response.content)
+        with zipfile.ZipFile(zip_file) as z:
+            with tempfile.TemporaryDirectory() as tmpdir:               
+                z.extractall(path=tmpdir) 
+                shapefile_path = next(
+                    os.path.join(tmpdir, name) for name in os.listdir(tmpdir) if name.endswith('.shp')
+                )
+                gdf = gpd.read_file(shapefile_path)
+                return gdf.set_crs(epsg=32736)
