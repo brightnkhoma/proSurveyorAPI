@@ -19,6 +19,6 @@ from django.urls import path
 from .views import  krigging
 
 urlpatterns = [
-    path('admin/', admin.site.urls),   
+    path('/', admin.site.urls),   
      path("krigging/",krigging)
 ]
