@@ -124,7 +124,7 @@ class Interpolate:
             with tempfile.TemporaryDirectory() as tmpdir:               
                 z.extractall(path=tmpdir) 
                 shapefile_path = next(
-                    os.path.join(tmpdir, name) for name in os.listdir(tmpdir) if name.endswith('.shp')
+                    os.path.join(tmpdir, name) for name in os.listdir(tmpdir) if name.endswith('mwi_admbnda_adm1_nso_hotosm_20230405.shp')
                 )
                 gdf = gpd.read_file(shapefile_path)
                 return gdf.set_crs(epsg=32736,allow_override=True)
