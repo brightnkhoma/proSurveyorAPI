@@ -50,9 +50,9 @@ class Interpolate:
         krigging_model.fit(model=model)
         z = []
         z.append(self.convert())
-        plt.savefig("zz.png")
+       
         
-        initial_geoDataFrame = self.get_shapeFile(self.downdload_shapefile(shapefile_path,f"shapefiles/{email}"))
+        initial_geoDataFrame = self.get_shapeFile(self.downdload_shapefile(shapefile_path,f"shapefiles/{email}")[0])
         final_geoDataFrame = initial_geoDataFrame.to_crs(epsg=crs)
 
         transformer = TransformerGDF()
@@ -73,8 +73,7 @@ class Interpolate:
              cbar = ax.pcolormesh(new_x,new_y,interpolated_values,cmap='jet')
              fig.colorbar(cbar)   
         z.append(self.convert())
-        if(report):
-            print("222222222222\n\n\n\n\n\\n\n\n\n\n\n\n")
+        if(report):           
             stats = krigging_model.evaluate(groups=bins, return_=True)
             report = self.createReport(title,stats=stats)
             print(333)
@@ -83,7 +82,7 @@ class Interpolate:
             return {"array":z, "report" : report}
         plt.close()
         return {"array":z, "report" : ""}
-       # fig.savefig("out.png")
+      
 
     def createReport(self,title : str, stats : str)->str:
         try:

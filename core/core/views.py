@@ -10,7 +10,7 @@ def krigging(request):
     data = json.loads(data)
     Interpolator = Main_functions.Interpolate()
     print(data)
-    result = Interpolator.interpolate(data=data['array'],shapefile_path=r'C:\Users\blown\OneDrive\Desktop\Malawi Data\mw_districts_pop_2008_new.shp',report=data['report'],title=data['title'],model=data['model'],bins = 2)  
+    result = Interpolator.interpolate(data=data['array'],shapefile_path=r'https://firebasestorage.googleapis.com/v0/b/wews-7fc10.appspot.com/o/files%2Fblownbrian%40gmail.com%2FstudyArea.zip?alt=media&token=f0b4865d-9ef1-4e5f-b12f-7972a4271aa4',report=data['report'],title=data['title'],model=data['model'],bins = 2)  
     content = result["array"]
     content.append({"answer" : result["report"],"type": "report"})    
     return JsonResponse(content, safe=False)
