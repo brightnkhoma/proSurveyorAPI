@@ -37,7 +37,7 @@ class Interpolate:
         plt.close()
         return {"answer": img_base64,"type" : "image"}
     
-    def interpolate( self,bins : int, data : list, shapefile_path : str,contour_map : bool = True,crs : int = 4326, report :bool = False,title : str = "",model : str = "exp",email:str = "test@gmail.com"):
+    def interpolate( self,bins : int, data : list, shapefile_path : str,contour_map : bool = True,crs : int = 4326, report :bool = False,email:str = "file/to/extract",title : str = "",model : str = "exp"):
         data = np.array(data)
         latitudes = data[:,0]
         longitudes = data[:,1]
