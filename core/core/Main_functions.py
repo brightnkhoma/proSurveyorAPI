@@ -100,8 +100,10 @@ class Interpolate:
         response = requests.get(path)
         if response.status_code == 200 :
             with zipfile.ZipFile(io.BytesIO(response.content)) as z:
-                z.extract(destination)
-                return self.find_shapefiles(destination)
+               if not os.path.exists(destination):
+                 os.makedirs(destination) 
+            z.extract(destination)
+            return self.find_shapefiles(destination)
 
 
     def find_shapefiles(self,directory : str):
