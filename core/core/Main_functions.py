@@ -84,10 +84,8 @@ class Interpolate:
         return {"array": z, "report": ""}
 
     def createReport(self, title: str, stats: str) -> str:
-        try:
-            print("starting report")
-            api_key = os.getenv("GEMINI_API_KEY")
-            print(api_key, " key")
+        try:           
+            api_key = os.getenv("GEMINI_API_KEY")           
             genai.configure(api_key=api_key)
             model = genai.GenerativeModel("gemini-1.5-flash")
             response = model.generate_content(f"write a field report about {title} with these stats : {stats}")
@@ -95,6 +93,19 @@ class Interpolate:
         except Exception as e:
             print(e)
             return "Failed to generate"
+        
+    def getContent(details : str):
+        try:
+            api_key = os.getenv("GEMINI_API_KEY")
+            genai.configure(api_key=api_key)
+            model = genai.GenerativeModel("gemini-1.5-flash") 
+            response = model.generate_content(f"{details}")
+            return {"answer" : response.text, "type" : "content"}
+        except Exception as e:
+            print(e)
+            return {"answer" : "Failed to generate text","type" : "content"}
+
+
 
     def downdload_shapefile(self, path: str, destination: str):
         response = requests.get(path)

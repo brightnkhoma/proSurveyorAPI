@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import  krigging
+from .views import  krigging, getContent
 
 urlpatterns = [
     path('/', admin.site.urls),   
-     path("krigging/",krigging)
+     path("krigging/",krigging),
+     path("/content",getContent)
 ]
