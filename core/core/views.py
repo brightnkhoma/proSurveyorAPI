@@ -23,6 +23,7 @@ def krigging(request):
 def getContent(request):
     data = request.GET.get("data")
     data = json.loads(data)
+    print(data)
     Interpolator = Main_functions.Interpolate()
     content = Interpolator.getContent(details = data["details"])
     return JsonResponse([content], safe=False)
