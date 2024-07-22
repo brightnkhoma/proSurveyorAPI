@@ -21,5 +21,5 @@ from .views import  krigging, getContent
 urlpatterns = [
     path('/', admin.site.urls),   
      path("krigging/",krigging),
-     path("/content/",getContent)
+     path("content/",getContent)
 ]
