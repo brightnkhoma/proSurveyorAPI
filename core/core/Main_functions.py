@@ -94,12 +94,13 @@ class Interpolate:
             print(e)
             return "Failed to generate"
         
-    def getContent(details : str):
+    def getContent(self, details):
         try:
             api_key = os.getenv("GEMINI_API_KEY")
             genai.configure(api_key=api_key)
             model = genai.GenerativeModel("gemini-1.5-flash") 
-            response = model.generate_content(f"{details}")
+            response = model.generate_content(details)
+            print(response)
             return {"answer" : response.text, "type" : "content"}
         except Exception as e:
             print(e)

@@ -19,7 +19,7 @@ from django.urls import path
 from .views import  krigging, getContent
 
 urlpatterns = [
-    path('/', admin.site.urls),   
-     path("krigging/",krigging),
-     path("content/",getContent)
+    path('admin/', admin.site.urls),   
+    path('krigging/', krigging),
+    path('content/', getContent),
 ]
