@@ -15,7 +15,7 @@ def krigging(request):
         content.append({"answer" : result["report"],"type": "report"})    
         return JsonResponse(content, safe=False)
     except Exception as e :
-        return JsonResponse([{"answer" : "something went wrong","type" : "report"}])
+        return JsonResponse([{"answer" : "something went wrong","type" : "report"}],safe=False)
         
 
 
